@@ -35,6 +35,7 @@ async function getTicketByIdDB(ticketId: number) {
     },
     include: {
       Enrollment: true,
+      TicketType: true,
     },
   });
 }
