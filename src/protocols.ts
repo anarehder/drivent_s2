@@ -23,15 +23,16 @@ export type CardType = {
   cvv: number;
 };
 
-export type PaymentType = {
-  userId: number;
+export type AddPaymentType = {
   ticketId: number;
-  cardInfo: CardType;
+  value: number;
+  cardIssuer: string;
+  cardLastDigits: string;
 };
 
-export type CreatePayment = {
-  userId: number;
+export type PaymentType = {
   ticketId: number;
+  cardInfo: CardType;
 };
 
 export type ViaCEPAddress = {
