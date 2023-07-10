@@ -21,7 +21,6 @@ async function findTicketEnrollment(ticketId: number, userId: number) {
 }
 
 async function getPaymentsService(ticketId: number, userId: number) {
-  console.log(ticketId, userId);
   await findTicketEnrollment(ticketId, userId);
 
   const payment = await paymentRepository.getpaymentDB(ticketId);

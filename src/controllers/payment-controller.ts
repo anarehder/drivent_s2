@@ -11,7 +11,6 @@ export async function getPayments(req: AuthenticatedRequest, res: Response, next
     }
     const ticketId = Number(req.query.ticketId);
     const payment = await paymentService.getPaymentsService(ticketId, userId);
-    console.log('pagamento', payment);
     return res.status(httpStatus.OK).send(payment);
   } catch (error) {
     next(error);
