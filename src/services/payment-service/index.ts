@@ -21,7 +21,20 @@ async function findTicketEnrollment(ticketId: number, userId: number) {
 }
 
 async function getPaymentsService(ticketId: number, userId: number) {
-  await findTicketEnrollment(ticketId, userId);
+  //await findTicketEnrollment(ticketId, userId);
+  // verifica se o ticket Id realmente existe
+  const ticket = await ticketRepository.getTicketByIdDB(ticketId);
+  if (!ticket) {
+    throw notFoundError();
+  }
+
+  // busca o enrollment associado a este usuario e compara os ids do enrollment com o usuario logado
+  const enrollment = await enrollmentRepository.findEnrollmentByIdDB(ticket.enrollmentId);
+  if (!enrollment) {
+    throw notFoundError();
+  }
+
+  if (enrollment.userId !== userId) throw unauthorizedError();
 
   const payment = await paymentRepository.getpaymentDB(ticketId);
   if (!payment) throw notFoundError();
