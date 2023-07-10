@@ -1,6 +1,37 @@
+import { TicketStatus } from '@prisma/client';
+
 export type ApplicationError = {
   name: string;
   message: string;
+};
+
+export type TicketBody = {
+  ticketTypeId: number;
+};
+
+export type AddTicketType = {
+  ticketTypeId: number;
+  enrollmentId: number;
+  status: TicketStatus;
+};
+
+export type CardType = {
+  issuer: string;
+  number: number;
+  name: string;
+  expirationDate: Date;
+  cvv: number;
+};
+
+export type PaymentType = {
+  userId: number;
+  ticketId: number;
+  cardInfo: CardType;
+};
+
+export type CreatePayment = {
+  userId: number;
+  ticketId: number;
 };
 
 export type ViaCEPAddress = {
